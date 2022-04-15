@@ -1,0 +1,88 @@
+/* LES TITRES */
+
+h1 {
+    font-size: 25pt;
+}
+
+h2 {
+    font-variant: small-caps;
+    font-size: 18pt;
+    color: #010A25;
+}
+
+h3 {
+    font-size: 16pt;
+    color: black;
+}
+
+
+/* LES LISTES */
+
+ol {
+    color: black;
+    list-style-type: upper-roman;
+}
+
+li {
+    color: #09112c;
+}
+
+
+/* LE TEXTE */
+
+a {
+    font-size: 9pt;
+    color: #420573;
+}
+
+a:hover {
+    color: #AB3AF5;
+}
+
+div {
+    font-size: 15pt;
+    color: #1977BC;
+    text-align: right;
+}
+
+p {
+    text-indent: 20px;
+}
+
+
+/* LES TABLEAUX */
+
+table {
+    width: 60%;
+    border-collapse: collapse;
+    border: 2px solid black;
+}
+
+th {
+    background-color: #E0F4F3;
+}
+
+thead {
+    color: #0A5C58;
+    font-align: center;
+}
+
+tbody {
+    color: #0A495C;
+}
+
+tr {
+    text-align: center;
+}
+
+td {
+    padding: 4px;
+}
+
+tr:nth-child(even) {
+    background-color: #E0F4F3;
+}
+
+tr:hover {
+    background-color: #8CC6F3;
+}

@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <link rel="stylesheet" type="text/css" href="compte-rendu-tp.css">
+    <title>Rapport projet Slitherlink</title>
+</head>
+
+<body>
+
+    <h1 class="centered">Rapport projet Slitherlink</h1>
+
+    <div class="right"> Alex BALASUBRAMANIAM <br>Sophie COUSSON <br> TD b </div>
+
+    <h2>Le guide utilisateur</h2>
+    <ol>
+        <li>
+            <h3>Pour lancer le jeu</h3>
+            Lorsqu&rsquo;on lance le programme une fen&egrave;tre apparait avec le nom du jeu. Un message s&rsquo;affiche et indique qu&rsquo;il faut cliquer pour commencer &agrave; jouer.</li>
+
+        <li>
+            <h3>Choisir une grille</h3>
+            Apr&egrave;s avoir cliquer sur la fenetre un menu avec trois grilles apparait, pour selectionner la grille avec laquelle on veut jouer il suffit de cliquer dessus, si vous voulez d&rsquo;autres grilles il faut appuyer sur suivant.</li>
+
+        <li>
+            <h3>Pour jouer</h3>
+            Maintenant que la grille que vous voulez et affich&eacute; en grand dans la fenetre vous pouvez commencer &agrave; jouer. Pour trac&eacute; un segment il faut faire un cick gauche entre deux sommet, pour interdire un sommet il faut faire un click droit
+            et si vous voulez supprimer une des modifications que vous avez apporter &agrave; la grille il suffit de cliquer dessus (peut importe le click les segment ou les croix disparaissent).<br> Au fur et &agrave; mesure que vous remplissez
+            la grilles les indices des cases changeront de couleur, ils sont rouge pour montrer que vous ne pouvez plus satisfaire l&rsquo;indice de la case, le bleu indique que vous avez un nombre satisfaisant de segment trac&eacute; autour de la case.<br>            Des l&rsquo;instant ou votre grille est r&eacute;solue un message s&rsquo;affichera dans le bas de la fenetre pour vous indiquer que vous avez gagn&eacute;.</li>
+
+        <li>
+            <h3>Le solveur</h3>
+            Si jamais vous n&rsquo;arriver pas &agrave; compl&eacute;ter la grille que vous avez selectionner vous pouvez utiliser le solveur. Pour &ccedil;a il suffit de cliquer sur le bouton solver en haut au centre de la fenetre. Une fois que c&rsquo;est fait
+            vous verrez trois nouveaux boutons apparaitre, un "rapide", un "lent", et un "solveur". Si vous choisissez le troisi&egrave;me bouton, le solver va s&rsquo;executer et avec un d&eacute;lait plus ou moins long vous verrez la solution &agrave;
+            l&rsquo;&eacute;crant.
+            <br> Si vous cliquer sur le mode lent alors la grille se r&eacute;solvera lentement devant vous, sinon la grille se r&eacute;solvera rapidement devant vous. Attention ces deux dernier mode peuvent &ecirc;tre tr&egrave;s long et une fois lanc&eacute;
+            vous ne pourrez plus l&rsquo;arreter, il faudra attendre que la solution soit trouver pour sortir.</li>
+
+        <li>
+            <h3>Comment changer de grille ?</h3>
+            Lorsque vous avez selectionner une grille, vous avez en plus de l&rsquo;option solveur deux boutons : "MENU" et "QUITTER". Si vous cliquer sur le menu vous retourner a la page contenant les diff&eacute;rentes grilles et vous pourrez selectionner n&rsquo;importe
+            laquelle. Attention si vous retourner sur le menu votre progression est effac&eacute;, si vous vouler rejouer votre grille il faudra recommencer.
+            <br> Si vous choisissez de quiter la partie est termin&eacute;e et votre progression est &eacute;galement &eacute;ffac&eacute;.
+        </li>
+
+    </ol>
+    <h2>L&rsquo;&eacute;tat d&rsquo;avancement</h2>
+    <ol>
+        <li>
+            <h3>T&acirc;che 1: Structures de donn&eacute;es</h3>
+            Nous avons impl&eacute;ment&eacute; toutes les fonctions d&rsquo;acc&egrave;s cependant certaines ne nous ont pas servi et ont &eacute;t&eacute; supprimer du programme comme : segment_vierges et segments_interdits, qui renvoit respectivement la liste
+            des sommets interdits et celle des segment trac&eacute;s autour d&rsquo;un sommet. La fonction "importante" dans les fonction d&rsquo;acc&egrave;s est statut_case qui prend trois arguments : la liste des indices de la grille de jeu, le dictionnaire
+            etat qui contient tous les segments trac&eacute; et interdits et une case qui est un couple de coordonn&eacute;es. La fonction permet de donner l&rsquo;&eacute;tat de la case qu&rsquo;elle re&ccedil;oit en param&egrave;tre sous forme d&rsquo;un
+            entier positif ou n&eacute;gatif.
+            <br>On commence par r&eacute;cup&eacute;rer la valeur de l&rsquo;indice de la case avec laquelle on travaille, si il est &eacute;gal &agrave; None alors l&rsquo;indice est toujours satisfait donc on return None. Sinon on cr&eacute;e la liste
+            des segments adjacents &agrave; la case, et dans une boucle for qui parcourt cette liste on va compter les segments interdits et les segments trac&eacute;s. On comparre le nombre de segments trac&eacute; et l&rsquo;indice de la case, si ils
+            sont &eacute;gaut alors on retourne 0, puis on fait une succesion de test pour verifier que les croix n&rsquo;emp&egrave;che pas de satisfaire l&rsquo;indice de la case, si ce n&rsquo;est pas le cas on regarde si tous les segments autour de
+            la case ont &eacute;t&eacute; selectionn&eacute; sinon on retourne 1 dans tous les autre cas on retourne -1. Cette fonction est utile plus tard dans d&rsquo;importante partie du programme : comme l&rsquo;affichage des indices &agrave; l&rsquo;&eacute;crant
+            ou la victoire du joueur.
+        </li>
+
+        <li>
+            <h3>T&acirc;che 2 : conditions de victoire</h3>
+            Nous avons &eacute;galement finis cette t&acirc;che. Les deux conditions pour gagner &eacute;tant de satisfaire tous les indices et de faire un boucle unique, nous avons r&eacute;aliser trois fonction, une fonction indices_satisfaits, une fonction longueur_boucle
+            et une fonction partie_gagnee qui verifie les deux conditions de victoire. <br>La fonction qui v&eacute;rifie si les indices sont satisfait est simplement une double boucle for qui parcout les indices et return False si l&rsquo;un
+            d&rsquo;eux n&rsquo;est pas satisfait et True sinon.<br> La fonction longueur boucle va v&eacute;rifi&eacute; que le joueur a bien fait une boucle unique et va retourner la longueur de la boucle. La fonction qui v&eacute;rifie si la partie
+            est gagn&eacute;e va d&rsquo;abord v&eacute;rifi&eacute; les indices et ensuite va compt&eacute; le nombre de segment trac&eacute; dans &eacute;tat pour le compar&eacute; &agrave; la longueur de la boucle obtenu grace &agrave; la fonction
+            explicit&eacute; pr&eacute;c&eacute;dement, si ces nombre correspondent alors la partie est gagn&eacute;.<br> Si le joueur arrive a faire des boucles imbriqu&eacute;es et a satisfaire tous les indices il n&rsquo;aura donc pas gang&eacute;
+            puisque la longueure des boucles ne correspondra pas au nombre de segments trac&eacute;s.
+        </li>
+
+        <li>
+            <h3>T&acirc;che 3: Interface graphique</h3>
+            Cette t&acirc;che demande &agrave; ce que le joueur puisse choisir une carte et qu&rsquo;il puisse jouer sur celle-ci. Nous avons donc cr&eacute;e un menu qui permet de choisir sa carte parmis six, trois fournies dans le sujet et trois autres que nous
+            avont soit faites soit r&eacute;cup&eacute;r&eacute; du site puzzle-loop.com. La fonction pricipale de cette t&acirc;che est celle qui d&eacute;tecte les clicks du joueur pour les transforme en segment.<br> Nous avons rencontr&eacute;
+            des difficult&eacute;s sur cette partie du programme, en effet comme les cordonn&eacute;es sont invers&eacute; il a fallu s&rsquo;y habituer avant de faire quelque chose de fonctionnel.<br> Dans un premier temps on r&eacute;cup&egrave;re la
+            taille des cases en x et en y et celle de la marge, puis on v&eacute;rifie que le click n&rsquo;est pas trop &agrave; gauche de la grille. Dans un second temps, on cherche &agrave; quelle case ce click correpsond et on teste quatre cas diff&eacute;rent(pour
+            les quatres côt&eacute;s), qui permettent de savoir où se trouve le segment et s&rsquo;il il y a bien un segment, on le retourne.
+        </li>
+
+        <li>
+            <h3>T&acirc;che 4: Recherche de solutions</h3>
+            Cette t&acirc;che consiste &agrave; cr&eacute;er un solveur pour r&eacute;soudre les diff&eacute;rentes grilles. Cette partie ne nous a pas pos&eacute; de probl&egrave;me particulier, les bugs que nous avont eu ont &eacute;t&eacute; assez rapidement r&eacute;solut
+            &agrave; l&rsquo;aide de l&rsquo;opion de d&eacute;bugage de notre &eacute;diteur. Ce solveur est une fonction r&eacute;cursive qui a deux cas d&rsquo;arrets, soit le solveur a r&eacute;alis&eacute; une boucle unique soit il a fait un embranchement
+            , s&rsquo;il a fait une boucle unique alors on regarde si tous les indices sont satisfaits, si c&rsquo;est le cas c&rsquo;est gagn&eacute;, sinon on retourne False. Dans le cas ou le segment que l&rsquo;on vien trac&eacute; ne ferme pas la
+            boucle on v&eacute;rifie si on peut "monter", pour cela on v&eacute;rifie si on est pas au bord supp&eacute;rieur de la grille et si le segment que l&rsquo;on veut trac&eacute; n&rsquo;est pas d&eacute;j&agrave; pr&eacute;sent dans etat. Si
+            le solveur passe cette condition alors il v&eacute;rifie s&rsquo;il peut &ecirc;tre trac&eacute; en faisant appel &agrave; la fonction indices_ok ( cette fonction v&eacute;rifie si les idices des cases adjacentes au segment peuvent encore
+            etre satisfait) si elle renvoit True alors on ajoute le segment a etat et on rapelle recurcivement la fonction solver avec le nouveau sommet. Si jamais aucun chemin n&rsquo;est trouv&eacute; &agrave; partir du nouveau sommet alors on le supprime
+            de etat et on recommence la recherche &agrave; partir du sommet pr&eacute;c&eacute;dent. Nous avons &eacute;galement impl&eacute;ment&eacute; la fonction premier_sommet qui renvoit le premier sommet par lequel la fonction solver devrait commencer.
+        </li>
+
+    </ol>
+    <h2>am&eacute;liorations </h2>
+    <ol>
+        <li>
+            <h3>am&eacute;lioration impl&eacute;menter</h3>
+            La seule am&eacute;lioration que nous avons fait est le solveur graphique. Dans un menu (d&eacute;crit dans le guide utilisateur) le joueur peut choisir entre trois versions semblables du solveur : soit il utilise le solveur classique de la t&acirc;che
+            4, soit il peut utiliser le solveur graphique, en mode lent ou rapide, qui dessine les traits au fur et &agrave; mesure. Le solveur lent marche plus ou moins, parfois il trace ou retire les segments un peu vite. <br> Cette am&eacute;lioration
+            nous a pos&eacute; probl&egrave;me car lorsqu&rsquo;on la lance on ne peut pas l&rsquo;arreter, nous avons essay&eacute; de mettre au d&eacute;but de la fonction les &eacute;l&eacute;ments permettant de r&eacute;cupr&eacute;rer un evenement
+            pour que l&rsquo;on puisse quitter cependant il faut cliquer plusieurs fois pour que ca fonctionne car la fonction n&rsquo;attend pas d&rsquo;evenement, elle le r&eacute;cup&egrave;re simplement si jamais il arrive au bon moment. Nous avons
+            donc pr&eacute;f&eacute;rer supprimer ces quelques ligne.
+        </li>
+
+
+    </ol>
+    <h2>Les fonctions importantes</h2>
+    <ol>
+        <li>
+            <h3>maj_grille</h3>
+            La fonction maj_grille permet de mettre de mettre la grille de jeu &agrave; jour. C&rsquo;est une boucle while qui affiche la grille, les indices, etc, et permet de r&eacute;cup&eacute;rer des &eacute;v&egrave;nements, elle v&eacute;rifie &eacute;galement
+            la victoire pour l&rsquo;afficher. Si le joueur clique sur la fen&egrave;tre, elle v&eacute;rifie si cela correspond a un boutons, si ce n&rsquo;est pas le cas, elle cherche le segment qui pourrait correspondre au click, s&rsquo;il existe
+            elle appelle la fonction ajoute_segment qui convertit un segment segment de la grille en segment avec des coordon&eacute;es en pixels.
+        </li>
+        <li>
+            <h3>dimension_fenetre</h3>
+            Cette fonction permet de dimensionner les grille pour que les cases et la marge soient bien proportion&eacute;es. On commence par r&eacute;cuperer la hauteur et la largeur de la grille et &agrave; partir de ces informations on dimensionne les cases, on
+            distingue deux cas, soit la grille est carr&eacute; et les coordonn&eacute;es en x et en y de chaque &eacute;l&eacute;ment sont les m&ecirc;mes soit la grille est rectangulaire et il faut donc avoir des cases rectangulaires, c&rsquo;est pourquoi
+            les cases et la marge ont deux valeurs. Comme le traitement est plus simple si les variables sont toujours de la m&ecirc;me forme les cases et la marge ont toujours cette forme. Apr&egrave;s avoir ajuster la taille des marges par rapport &agrave;
+            la taille des cases, la fonction ajoute tout les nouveaux &eacute;l&eacute;ments &agrave; un dictionaire infos qu&rsquo;on utilise durant tout le programme.
+        </li>
+    </ol>
+    <p>la majorit&eacute; des autres fonctions importante on &eacute;t&eacute; trait&eacute; dans la rubrique pr&eacute;c&eacute;dente</p>
+
+    <h2>La r&eacute;partition du travail</h2>
+    <ol>
+        <li>
+            <h3>Alex</h3>
+            Alex s&rsquo;est occup&eacute; majoritairement des fonctions d&rsquo;acc&egrave;s, des fonctions sur la grille (document texte), de la fonction maj_grille ainsi que de certaine fonctions d&rsquo;affichage.
+        </li>
+        <li>
+            <h3>Sophie</h3>
+            Sophie s&rsquo;est occup&eacute; du solveur, des fonctions pour la victoire, que le travail avec les coordon&eacute;es (trouver le segment &agrave; partir du click, les cordonn&eacute;es dans la fenetre d&rsquo;un segment, ...) ainsi que les diff&eacute;rents
+            menus.
+        </li>
+
+        <li>
+            <h3>Ensemble</h3>
+            Le reste du programme a &eacute;t&eacute; con&ccedil;u ensemble.
+        </li>
+    </ol>
+
+</body>
+
+</html>
